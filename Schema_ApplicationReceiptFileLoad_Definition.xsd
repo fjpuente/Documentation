@@ -1,0 +1,146 @@
+﻿<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.0" vc:maxVersion="1.1">
+    <xs:element name="AppReceiptFile">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="StudentDetails" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <!--Salesforce Account ID-->
+                            <xs:element name="INTOAccountId">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:length value="18"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Salesforce Enquiry Token-->
+                            <xs:element name="SalesforceApplicationID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:length value="35"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Pidm from Banner-->
+                            <xs:element name="BannerPidm" nillable="true">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Student ID from University ERP-->
+                            <xs:element name="UniversityStudentNumber" nillable="true">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="18"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--University Email from University ERP-->
+                            <xs:element name="UniversityEmail" nillable="true">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[^\s@]+@[^\.\s]+\.[^\s]+"/>
+                                        <xs:pattern value=""/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Salesforce Course ID-->
+                            <xs:element name="INTOCourseId" nillable="true">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:length value="18"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--University Course Major Code-->
+                            <xs:element name="UniversityMajorCode" nillable="true">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="30"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Verbose University Major....i.e. Business - Accounting-->
+                            <xs:element name="Major">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Verbose Term....i.e. Fall 2017-->
+                            <xs:element name="Term">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Degree Type Award Abbreviation....i.e. (B.A.), (B.S.), (B.S.O.S.), and (B.S.N.)-->
+                            <xs:element name="DegreeType" nillable="true">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Campus: "Main Campus or Satellite Campuses"-->
+                            <xs:element name="Campus" nillable="true">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Course Decision Values-->
+                            <xs:element name="DecisionType">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Decision" nillable="true">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="Admit"/>
+                                                  <xs:enumeration value="Conditional"/>
+                                                  <xs:enumeration value="Course Change Pre-Offer"/>
+                                                  <xs:enumeration value="Deny"/>
+                                                  <xs:enumeration value="Offer"/>
+                                                  <xs:enumeration value="Offer / Admit"/>
+                                                  <xs:enumeration value="Offer-C"/>
+                                                  <xs:enumeration value="Pre-Admit"/>
+                                                  <xs:enumeration value="Withdrawn"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+										<!--Required Notes for Conditional and Deny Decisions-->
+                                        <xs:choice>
+                                            <xs:element name="ConditionNotes" type="xs:string"
+                                                nillable="true"/>
+                                            <xs:element name="DenyNotes" type="xs:string"
+                                                nillable="true"/>
+                                            <xs:element name="OtherNotes" type="xs:string"
+                                                nillable="true"/>
+                                        </xs:choice>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <!--Course Response Values-->
+                            <xs:element name="Response" nillable="true">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Cancelled"/>
+                                        <xs:enumeration value="Confirmed"/>
+                                        <xs:enumeration value="Course Change"/>
+                                        <xs:enumeration value="Declined"/>
+                                        <xs:enumeration value="Deferred"/>
+                                        <xs:enumeration value="Sponsored"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!--Boolean Flag to check if student is enrolled-->
+                            <xs:element name="EnrollmentStatus" type="xs:string" nillable="true">
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
